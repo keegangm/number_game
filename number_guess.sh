@@ -32,14 +32,23 @@ PSQL="psql --username=freecodecamp --dbname=number_guess -t --no-align -c"
   fi
 
 # game dialogue
+  # create game log in games table
+  CREATE_GAME_LOG_EVENT=$($PSQL "INSERT INTO games(user_id, date_played) VALUES($LOOKUP_USER_ID, NOW()) RETURNING game_id")
+  EXTRACT_GAME_ID=$(echo $CREATE_GAME_LOG_EVENT | sed 's/ INSERT 0 1//g')
 
   # generate SECRET_NUMBER
+  SECRET_NUMBER=$(( ( RANDOM % 1000 ) +1 ))
+
+  # insert $SECRET_NUMBER into games log table
+  UPDATE_SECRET_NUMBER=$($PSQL "UPDATE games SET secret_number=$SECRET_NUMBER WHERE game_id=$EXTRACT_GAME_ID")
 
   # echo "Guess the secret number between 1 and 1000:"
+  echo "Guess the secret number between 1 and 1000:"
 
   # loop
     
     # read GUESS_NUMBER
+    read GUESS_NUMBER
 
     # if GUESS_NUMBER < SECRET_NUMBER, 
     # then echo "It's higher than that, guess again:"
