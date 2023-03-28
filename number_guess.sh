@@ -6,20 +6,30 @@ PSQL="psql --username=freecodecamp --dbname=number_guess -t --no-align -c"
 # setup dialogue
 
   # initial dialogue: Enter your username and then read username
+  echo "Enter your username:"
+  read USERNAME
 
   # lookup username
+  USERNAME_LOOKUP=$($PSQL "SELECT * FROM users WHERE username='$USERNAME'")
 
-  # if found
-    
-    # lookup games_played
+  if [[ -z $USERNAME_LOOKUP ]]
+  then
 
-    # lookup best_game
+    # echo message
+    echo "Welcome, $USERNAME! It looks like this is your first time here."
 
-    # print Welcome back, <username>! You have played <games_played> games, and your best game took <best_game> guesses
-  
-  #else
+    # insert new user into users table
+    INSERT_NEW_USER=$($PSQL "INSERT INTO users(username) VALUES('$USERNAME')")
 
-    # print Welcome, <username>! It looks like this is your first time here.
+  else
+    # lookup user_id, user_games, and best_game from users and games tables
+    LOOKUP_USER_ID=$($PSQL "SELECT user_id FROM users WHERE username='$USERNAME'")
+    LOOKUP_USER_GAMES=$($PSQL "SELECT count(game_id) FROM games WHERE user_id=$LOOKUP_USER_ID")
+    LOOKUP_BEST_GAME=$($PSQL "SELECT min(loops_till_win) FROM games WHERE user_id=$LOOKUP_USER_ID")
+
+   # print Welcome back, <username>! You have played <games_played> games, and your best game took <best_game> guesses
+    echo "Welcome back, $USERNAME! You have played $LOOKUP_USER_GAMES games, and your best game took $LOOKUP_BEST_GAME guesses."
+  fi
 
 # game dialogue
 
