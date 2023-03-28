@@ -51,7 +51,8 @@ CREATE TABLE public.games (
     game_id integer NOT NULL,
     user_id integer NOT NULL,
     loops_till_win integer,
-    date_played date DEFAULT CURRENT_DATE NOT NULL
+    date_played date DEFAULT CURRENT_DATE NOT NULL,
+    secret_number integer
 );
 
 
@@ -131,26 +132,72 @@ ALTER TABLE ONLY public.users ALTER COLUMN user_id SET DEFAULT nextval('public.u
 -- Data for Name: games; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.games VALUES (1, 1, 50, '2023-03-28', NULL);
+INSERT INTO public.games VALUES (2, 1, 23, '2023-03-28', NULL);
+INSERT INTO public.games VALUES (3, 3, NULL, '2023-03-28', NULL);
+INSERT INTO public.games VALUES (4, 1, NULL, '2023-03-28', NULL);
+INSERT INTO public.games VALUES (5, 1, NULL, '2023-03-28', NULL);
+INSERT INTO public.games VALUES (6, 1, NULL, '2023-03-28', NULL);
+INSERT INTO public.games VALUES (7, 1, NULL, '2023-03-28', NULL);
+INSERT INTO public.games VALUES (8, 1, NULL, '2023-03-28', NULL);
+INSERT INTO public.games VALUES (9, 1, NULL, '2023-03-28', NULL);
+INSERT INTO public.games VALUES (10, 1, NULL, '2023-03-28', NULL);
+INSERT INTO public.games VALUES (11, 1, NULL, '2023-03-28', NULL);
+INSERT INTO public.games VALUES (12, 1, NULL, '2023-03-28', NULL);
+INSERT INTO public.games VALUES (13, 1, NULL, '2023-03-28', NULL);
+INSERT INTO public.games VALUES (14, 1, NULL, '2023-03-28', 500);
+INSERT INTO public.games VALUES (15, 1, NULL, '2023-03-28', 594);
+INSERT INTO public.games VALUES (16, 1, NULL, '2023-03-28', 81);
+INSERT INTO public.games VALUES (17, 1, NULL, '2023-03-28', 507);
+INSERT INTO public.games VALUES (18, 1, NULL, '2023-03-28', 15);
+INSERT INTO public.games VALUES (19, 8, NULL, '2023-03-28', 609);
+INSERT INTO public.games VALUES (20, 9, NULL, '2023-03-28', 298);
+INSERT INTO public.games VALUES (21, 8, NULL, '2023-03-28', 41);
+INSERT INTO public.games VALUES (22, 8, NULL, '2023-03-28', 22);
+INSERT INTO public.games VALUES (23, 8, NULL, '2023-03-28', 978);
+INSERT INTO public.games VALUES (52, 41, NULL, '2023-03-28', 408);
+INSERT INTO public.games VALUES (53, 42, NULL, '2023-03-28', 616);
+INSERT INTO public.games VALUES (54, 41, NULL, '2023-03-28', 492);
+INSERT INTO public.games VALUES (55, 41, NULL, '2023-03-28', 622);
+INSERT INTO public.games VALUES (56, 41, NULL, '2023-03-28', 366);
+INSERT INTO public.games VALUES (85, 74, NULL, '2023-03-28', 359);
+INSERT INTO public.games VALUES (86, 75, NULL, '2023-03-28', 733);
+INSERT INTO public.games VALUES (87, 74, NULL, '2023-03-28', 585);
+INSERT INTO public.games VALUES (88, 74, NULL, '2023-03-28', 687);
+INSERT INTO public.games VALUES (89, 74, NULL, '2023-03-28', 17);
 
 
 --
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.users VALUES (1, 'Lou');
+INSERT INTO public.users VALUES (2, 'bunsen');
+INSERT INTO public.users VALUES (3, 'li');
+INSERT INTO public.users VALUES (4, 'user_1679969208059');
+INSERT INTO public.users VALUES (5, 'user_1679969208058');
+INSERT INTO public.users VALUES (6, 'user_1679969261022');
+INSERT INTO public.users VALUES (7, 'user_1679969261021');
+INSERT INTO public.users VALUES (8, 'user_1679970712305');
+INSERT INTO public.users VALUES (9, 'user_1679970712304');
+INSERT INTO public.users VALUES (41, 'user_1679970917440');
+INSERT INTO public.users VALUES (42, 'user_1679970917439');
+INSERT INTO public.users VALUES (74, 'user_1679971139988');
+INSERT INTO public.users VALUES (75, 'user_1679971139987');
 
 
 --
 -- Name: games_game_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.games_game_id_seq', 1, false);
+SELECT pg_catalog.setval('public.games_game_id_seq', 89, true);
 
 
 --
 -- Name: username_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.username_user_id_seq', 1, false);
+SELECT pg_catalog.setval('public.username_user_id_seq', 75, true);
 
 
 --
